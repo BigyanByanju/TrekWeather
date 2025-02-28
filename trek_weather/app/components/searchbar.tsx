@@ -219,6 +219,8 @@ const SearchBar: React.FC<SearchBarProps> = ({ onWeatherDataFetched }) => {
           placeholder: "Type a trail location",
           value,
           onChange,
+          className:
+            "w-full p-2 border border-transparent rounded-md focus:outline-none focus:ring-0 focus:border-transparent",
         }}
         onSuggestionSelected={onSuggestionSelected} // Handle selection
         theme={{
@@ -229,8 +231,10 @@ const SearchBar: React.FC<SearchBarProps> = ({ onWeatherDataFetched }) => {
             // Style the border
           },
           suggestion: {
-            padding: "8px 16px", // Adjust padding for suggestion items
-            cursor: "pointer", // Show a pointer cursor on hover
+            padding: "8px 16px",
+            cursor: "pointer",
+            fontSize: "14px", // Make text smaller
+            color: "#6b7280", // Grey color (Tailwind's gray-500)
           },
           suggestionsContainerOpen: {
             maxHeight: "200px", // Limit the height of the suggestion list

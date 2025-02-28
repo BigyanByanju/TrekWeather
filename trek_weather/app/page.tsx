@@ -22,78 +22,84 @@ export default function Home() {
   const [weatherData, setWeatherData] = useState<WeatherData[] | null>(null);
 
   const handleTrekWeatherClick = () => {
-    window.location.reload(); // Reload the page when clicking on TrekWeather
+    window.location.reload();
   };
 
   const handleBigyanClick = () => {
     window.open(
       "https://www.linkedin.com/in/bigyan-byanju-shrestha-3651081b6/",
       "_blank"
-    ); // Open LinkedIn profile in a new tab
+    );
   };
 
   const handleWeatherAPIclick = () => {
-    window.open("https://www.weatherapi.com/", "_blank"); // Open WeatherAPI in a new tab
+    window.open("https://www.weatherapi.com/", "_blank");
   };
 
   return (
-    <div className="flex flex-col p-3.5 items-center h-screen bg-[#F4F4F4] font-(family-name:poppins) text-black ">
-      <div>
-        <p className="font-medium text-[10px] mb-3 tracking-widest">
-          Developed by{" "}
-          <span
-            className="cursor-pointer text-blue-500"
-            onClick={handleBigyanClick}
-          >
-            Bigyan
-          </span>
-          {" | "}
-          <span
-            className="cursor-pointer text-blue-500"
-            onClick={handleWeatherAPIclick}
-          >
-            Weather source: Weather API
-          </span>
-        </p>
+    <div className="flex flex-col p-4 sm:p-6 md:p-8 items-center min-h-screen bg-[#F4F4F4] font-poppins text-black">
+      {/* Developer Info */}
+      <div className="text-center text-sm sm:text-sm md:text-base tracking-widest mb-3">
+        Developed by{" "}
+        <span
+          className="cursor-pointer text-blue-500"
+          onClick={handleBigyanClick}
+        >
+          Bigyan
+        </span>{" "}
+        |{" "}
+        <span
+          className="cursor-pointer text-blue-500"
+          onClick={handleWeatherAPIclick}
+        >
+          Weather source: Weather API
+        </span>
       </div>
-      <div className="flex flex-col text-center justify-center">
-        <div
-          className="text-3xl text-[#1E80FF] font-bold cursor-pointer"
+
+      {/* Title Section */}
+      <div className="text-center">
+        <h1
+          className="text-2xl sm:text-3xl md:text-4xl text-[#1E80FF] font-bold cursor-pointer"
           onClick={handleTrekWeatherClick}
         >
           TrekWeather
-        </div>
-        <div className="text-sm font-light tracking-widest">
+        </h1>
+        <p className="text-sm sm:text-base font-light tracking-widest">
           Your reliable trek partner
-        </div>
-      </div>
-      <div className="flex flex-col items-center mt-5">
-        <p className="text-3xl font-medium">
-          Discover the <span className="text-blue-500">weather</span> conditions
-          of your <span className="text-[#1E80FF]"> dream trek</span>.
         </p>
-        <p className="text-xl font-light mt-2">
+      </div>
+
+      {/* Description */}
+      <div className="flex flex-col items-center mt-5 text-center max-w-2xl">
+        <p className="text-lg sm:text-xl md:text-2xl font-medium">
+          Discover the <span className="text-blue-500">weather</span> conditions
+          of your <span className="text-[#1E80FF]">dream trek</span>.
+        </p>
+        <p className="text-sm sm:text-base md:text-lg font-light mt-2">
           Search your planned trek and view the weather forecast for the next
           five days at each checkpoint along the trail.
         </p>
-        <div className="flex justify-center mt-5 p-2 border-2 w-xl border-[#1E80FF] rounded-3xl">
-          {/* Pass handler to SearchBar */}
+
+        {/* Search Bar */}
+        <div className="flex justify-center mt-5 p-2 border-2 w-full max-w-lg border-[#1E80FF] rounded-3xl">
           <SearchBar onWeatherDataFetched={setWeatherData} />
         </div>
       </div>
+
+      {/* Background Image (Hidden on smaller screens) */}
       {!weatherData && (
         <Image
           src={backgroundImg}
           alt="Trekking"
           width={900}
           height={800}
-          className="mt-5"
+          className="mt-5 w-full max-w-lg sm:max-w-xl md:max-w-2xl"
         />
       )}
 
-      {/* Show DisplayWeather only if data is available */}
+      {/* Display Weather */}
       {weatherData && weatherData.length > 0 && (
-        <div className="flex flex-col items-center mt-5">
+        <div className="flex flex-col items-center mt-5 w-full max-w-4xl">
           <DisplayWeather data={weatherData} />
         </div>
       )}
