@@ -128,6 +128,23 @@ const trailData = [
   { name: "Yalung Base Camp Trek" },
 ];
 
+// Define the type for each trail suggestion
+interface Trail {
+  name: string;
+}
+
+// Define the type for the weather data
+interface WeatherData {
+  Date: string;
+  Checkpoint: string;
+  Latitude: number;
+  Longitude: number;
+  "Max Temp (°C)": number;
+  "Min Temp (°C)": number;
+  "Rain (mm)": number;
+  "Will It Rain?": string;
+  "Weather Condition": string;
+}
 // Function to get suggestions based on input
 const getSuggestions = (value: string) => {
   const inputValue = value.trim().toLowerCase();
@@ -149,18 +166,18 @@ const renderSuggestion = (suggestion: { name: string }) => (
 
 // Define props type for passing data
 interface SearchBarProps {
-  onWeatherDataFetched: (data: any) => void;
+  onWeatherDataFetched: (data: WeatherData[]) => void;
 }
 
 // SearchBar component
 const SearchBar: React.FC<SearchBarProps> = ({ onWeatherDataFetched }) => {
   const [value, setValue] = useState("");
-  const [suggestions, setSuggestions] = useState<any[]>([]);
+  const [suggestions, setSuggestions] = useState<Trail[]>([]);
   const [loading, setLoading] = useState(false);
 
   // Handle input change
   const onChange = (
-    event: React.FormEvent<any>,
+    event: React.FormEvent,
     { newValue }: { newValue: string }
   ) => {
     setValue(newValue);
@@ -178,7 +195,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ onWeatherDataFetched }) => {
 
   // Handle selection of a suggestion
   const onSuggestionSelected = async (
-    event: React.FormEvent<any>,
+    event: React.FormEvent,
     { suggestion }: { suggestion: { name: string } }
   ) => {
     console.log("Selected suggestion:", suggestion);

@@ -28,24 +28,27 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-// Define props type
+// Define the WeatherData type
+interface WeatherData {
+  Date: string;
+  Checkpoint: string;
+  Latitude: number;
+  Longitude: number;
+  "Max Temp (°C)": number;
+  "Min Temp (°C)": number;
+  "Rain (mm)": number;
+  "Will It Rain?": string;
+  "Weather Condition": string;
+}
+
+// Define the props type that includes the typed data array
 interface WeatherProps {
-  data: {
-    Date: string;
-    Checkpoint: string;
-    Latitude: number;
-    Longitude: number;
-    "Max Temp (°C)": number;
-    "Min Temp (°C)": number;
-    "Rain (mm)": number;
-    "Will It Rain?": string;
-    "Weather Condition": string;
-  }[];
+  data: WeatherData[];
 }
 
 // Function to remove duplicates based on Date and Checkpoint
-const removeDuplicates = (data: any[]) => {
-  const uniqueData = new Map();
+const removeDuplicates = (data: WeatherData[]): WeatherData[] => {
+  const uniqueData = new Map<string, WeatherData>();
 
   data.forEach((item) => {
     const key = `${item.Checkpoint}-${item.Date}`; // Combining Checkpoint and Date as key
@@ -68,7 +71,7 @@ const DisplayWeather: React.FC<WeatherProps> = ({ data }) => {
     }
     acc[row.Checkpoint].push(row);
     return acc;
-  }, {} as Record<string, any[]>);
+  }, {} as Record<string, WeatherData[]>);
 
   return (
     <>

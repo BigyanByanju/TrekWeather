@@ -5,8 +5,21 @@ import DisplayWeather from "./components/displayweather";
 import Image from "next/image";
 import backgroundImg from "../public/bg.png";
 
+// Define the interface for the weather data
+interface WeatherData {
+  Date: string;
+  Checkpoint: string;
+  Latitude: number;
+  Longitude: number;
+  "Max Temp (°C)": number;
+  "Min Temp (°C)": number;
+  "Rain (mm)": number;
+  "Will It Rain?": string;
+  "Weather Condition": string;
+}
+
 export default function Home() {
-  const [weatherData, setWeatherData] = useState(null);
+  const [weatherData, setWeatherData] = useState<WeatherData[] | null>(null);
 
   const handleTrekWeatherClick = () => {
     window.location.reload(); // Reload the page when clicking on TrekWeather
@@ -79,8 +92,7 @@ export default function Home() {
       )}
 
       {/* Show DisplayWeather only if data is available */}
-
-      {weatherData && (
+      {weatherData && weatherData.length > 0 && (
         <div className="flex flex-col items-center mt-5">
           <DisplayWeather data={weatherData} />
         </div>
