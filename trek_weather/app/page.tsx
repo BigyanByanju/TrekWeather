@@ -37,9 +37,9 @@ export default function Home() {
   };
 
   return (
-    <div className="flex flex-col p-4 sm:p-6 md:p-8 items-center min-h-screen bg-[#F4F4F4] font-poppins text-black">
+    <div className="flex flex-col p-2 sm:p-2 md:p-2 items-center min-h-screen bg-[#F4F4F4] font-poppins text-black">
       {/* Developer Info */}
-      <div className="text-center text-sm sm:text-sm md:text-base tracking-widest mb-3">
+      <div className="text-center text-sm sm:text-sm md:text-sm tracking-widest mb-3">
         Developed by{" "}
         <span
           className="cursor-pointer text-blue-500"
@@ -57,7 +57,7 @@ export default function Home() {
       </div>
 
       {/* Title Section */}
-      <div className="text-center">
+      <div className="text-center m-4">
         <h1
           className="text-2xl sm:text-3xl md:text-4xl text-[#1E80FF] font-bold cursor-pointer"
           onClick={handleTrekWeatherClick}
@@ -70,7 +70,7 @@ export default function Home() {
       </div>
 
       {/* Description */}
-      <div className="flex flex-col items-center mt-5 text-center max-w-2xl">
+      <div className="flex flex-col items-center mt-5 text-center ">
         <p className="text-lg sm:text-xl md:text-2xl font-medium">
           Discover the <span className="text-blue-500">weather</span> conditions
           of your <span className="text-[#1E80FF]">dream trek</span>.
@@ -81,7 +81,7 @@ export default function Home() {
         </p>
 
         {/* Search Bar */}
-        <div className="flex justify-center mt-5 p-2 border-2 w-full max-w-lg border-[#1E80FF] rounded-3xl">
+        <div className="flex justify-center mt-5 p-1 border-2 w-full max-w-lg border-[#1E80FF] rounded-3xl">
           <SearchBar onWeatherDataFetched={setWeatherData} />
         </div>
       </div>
