@@ -3,7 +3,7 @@ const weatherApiKey = process.env.GETWEATHERCODE;
 const fetchWeatherData = async (trailName: string) => {
   try {
     const response = await fetch(
-      `https://checkpointweather.azurewebsites.net/api/getWeather?trail_name=${encodeURIComponent(
+      `https://serve-weather.azurewebsites.net/api/getWeather?trail_name=${encodeURIComponent(
         trailName
       )}&code=${weatherApiKey}`,
       {
